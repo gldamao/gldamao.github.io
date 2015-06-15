@@ -1,0 +1,16 @@
+---
+layout: post
+title: "Chapter.16 使用列表"
+date: 2015-05-31 16:54:59 +0800
+comments: true
+categories: scala 读书笔记
+---
+
+Chapter.16 使用列表
+
+#### 列表字面量
+列表和数组不同,列表是不可变的.
+
+1. 不能通过赋值来改变列表的元素.
+2. 列表具有递归结构(说的是可以通过递归的方法来访问eg: LinkedList),而数组是连续的.
+
