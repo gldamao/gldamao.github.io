@@ -4,10 +4,10 @@
     <title>Gene,Gao</title>
     <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </description>
-    <link>http://yourdomain.com/</link>
-    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 15 Jun 2015 13:38:26 +0800</pubDate>
-    <lastBuildDate>Mon, 15 Jun 2015 13:38:26 +0800</lastBuildDate>
+    <link>http://yourdomain.com/gitblog/</link>
+    <atom:link href="http://yourdomain.com/gitblog/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 15 Jun 2015 14:10:54 +0800</pubDate>
+    <lastBuildDate>Mon, 15 Jun 2015 14:10:54 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -27,8 +27,8 @@
 &lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://github.com/jekyll/jekyll-help&quot;&gt;Jekyll’s dedicated Help repository&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Mon, 15 Jun 2015 19:12:01 +0800</pubDate>
-        <link>http://yourdomain.com/jekyll/update/2015/06/15/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/jekyll/update/2015/06/15/welcome-to-jekyll.html</guid>
+        <link>http://yourdomain.com/gitblog/jekyll/update/2015/06/15/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/gitblog/jekyll/update/2015/06/15/welcome-to-jekyll.html</guid>
         
         
         <category>jekyll</category>
@@ -61,8 +61,8 @@
 &lt;span class=&quot;n&quot;&gt;res1&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
         <pubDate>Sun, 31 May 2015 16:54:59 +0800</pubDate>
-        <link>http://yourdomain.com/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-9.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-9.html</guid>
+        <link>http://yourdomain.com/gitblog/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-9.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/gitblog/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-9.html</guid>
         
         
         <category>scala</category>
@@ -157,8 +157,8 @@ a: (Int, Int , Int) =&amp;gt; Int = &amp;lt;function&amp;gt;
 &lt;/blockquote&gt;
 </description>
         <pubDate>Sun, 31 May 2015 16:54:59 +0800</pubDate>
-        <link>http://yourdomain.com/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-8.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-8.html</guid>
+        <link>http://yourdomain.com/gitblog/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-8.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/gitblog/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-8.html</guid>
         
         
         <category>scala</category>
@@ -270,8 +270,8 @@ case ex: java.io.IOException =&amp;gt; //Handle error I/O
 &lt;hr&gt;
 </description>
         <pubDate>Sun, 31 May 2015 16:54:59 +0800</pubDate>
-        <link>http://yourdomain.com/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-7.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-7.html</guid>
+        <link>http://yourdomain.com/gitblog/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-7.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/gitblog/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-7.html</guid>
         
         
         <category>scala</category>
@@ -294,8 +294,8 @@ case ex: java.io.IOException =&amp;gt; //Handle error I/O
 &lt;/ol&gt;
 </description>
         <pubDate>Sun, 31 May 2015 16:54:59 +0800</pubDate>
-        <link>http://yourdomain.com/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-16.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-16.html</guid>
+        <link>http://yourdomain.com/gitblog/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-16.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/gitblog/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-16.html</guid>
         
         
         <category>scala</category>
@@ -407,8 +407,8 @@ case ex: java.io.IOException =&amp;gt; //Handle error I/O
 &lt;p&gt;option包含了两种形式的值,Some(x)和None,其中x是实际的值,None表示缺失.分离可选值最好的方式就是采用模式匹配来处理.&lt;/p&gt;
 </description>
         <pubDate>Sun, 31 May 2015 16:54:59 +0800</pubDate>
-        <link>http://yourdomain.com/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-15.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-15.html</guid>
+        <link>http://yourdomain.com/gitblog/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-15.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/gitblog/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-15.html</guid>
         
         
         <category>scala</category>
@@ -497,8 +497,8 @@ case ex: java.io.IOException =&amp;gt; //Handle error I/O
 &lt;/ol&gt;
 </description>
         <pubDate>Sun, 31 May 2015 16:54:59 +0800</pubDate>
-        <link>http://yourdomain.com/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-12.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-12.html</guid>
+        <link>http://yourdomain.com/gitblog/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-12.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/gitblog/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-12.html</guid>
         
         
         <category>scala</category>
@@ -527,8 +527,8 @@ Scala中的AnyRef是引用类的基类.在Java平台上AnyRef实际就是类java
 &lt;p&gt;这样即使是通过else分支返回,Nothing也是Int的子类型,所以divide整体返回Int是没有问题的.&lt;/p&gt;
 </description>
         <pubDate>Sun, 31 May 2015 16:54:59 +0800</pubDate>
-        <link>http://yourdomain.com/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-11.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-11.html</guid>
+        <link>http://yourdomain.com/gitblog/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-11.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/gitblog/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-11.html</guid>
         
         
         <category>scala</category>
@@ -643,8 +643,8 @@ Java中的命名空间:&lt;strong&gt;字段&lt;/strong&gt;,&lt;strong&gt;方法&
 &lt;/ol&gt;
 </description>
         <pubDate>Sun, 31 May 2015 16:54:59 +0800</pubDate>
-        <link>http://yourdomain.com/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-10.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-10.html</guid>
+        <link>http://yourdomain.com/gitblog/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-10.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/gitblog/scala/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2015/05/31/Chapter-10.html</guid>
         
         
         <category>scala</category>
