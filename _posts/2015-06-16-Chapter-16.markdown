@@ -1,0 +1,125 @@
+---
+layout: post
+title: "Chapter.16 使用列表"
+date: 2015-06-16 16:54:59 +0800
+comments: true
+categories: scala 读书笔记
+---
+
+Chapter.16 使用列表
+
+#### 列表字面量
+列表和数组不同,列表是不可变的.
+
+1. 不能通过赋值来改变列表的元素.
+2. 列表具有递归结构(说的是可以通过递归的方法来访问eg: LinkedList),而数组是连续的.
+
+**Scala中的列表是协变的,对于每一对类型S和T来说,如果S是T的子类,那么List[S]是List[T]的子类型. 空列表List()的类型是List[Nothing],所以空列表可以赋值给任何类型的列表引用**.
+
+``` Scala
+def isort(xs: List[Int]): List[Int] = {
+  if (xs.isEmpty) Nil
+  else insert(xs.head, isort(xs.tail))
+}
+
+def insert(x: Int, xs: List[Int]): List[Int] = {
+  if (xs.isEmpty || x <= xs.head) x :: xs
+  else insert(xs.head, insert(x, xs.tail))
+}
+```
+
+以上是使用Scala实现的插入排序,iosort方法接收一个参数类型为Int的列表,返回一个排序好的列表,而helper函数insert接受一个Int参数和一个List,含义是把该Int变量插入到一个已经排好序的列表中,并返回插入新元素的排序后列表.
+
+####列表模式
+列表和模式的结合使用,重点在于利用模式来解构列表.长度已知(如果长度不符则抛异常)和长度未知的两种常用结构方式:
+   
+    scala> val List(a, b, c) = fruit
+    a: String = apples
+    b: String = oranges
+    c: String = pears
+
+    scala> val a :: b :: rest = fruit
+    a: String = apples
+    b: String = oranges
+    rest: List[String] = List[String](pears)
+
+从列表的两个常用操作符(:: :::)上可以看出,列表的构建都是从后向前的.参考append方法的实现:
+
+```Scala
+def append[T](x: List[T], y: List[T]): List[T] = {
+  x match {
+    case Nil => y
+    case xa :: xb => xa :: append(xb, y)
+  }
+}
+```
+
+> 与head,tail想对应的是init,last.head与tail是与列表长度无关的,总可以在常量时间内返回结果,而init和last需要遍历整个list,执行时长与list长度成正比.所以组织好结构,让常用的数据都放置在头部,而不是尾部.
+
+#####List中几个比较常用的操作:
+
+* 列表的常规方法
+  * apply
+  * indices   返回列表所有有效的索引值组成的列表.
+  * take  
+  * drop
+  * splitAt   xs splitAt n <=> (xs take n, xs drop n)
+  * toArray <=> toList
+  * copyToArray   把列表元素拷贝到指定Array中,第二个参数表示在Array中从指定下标后开始存数据,要保证Array有足够的长度!!
+  * toString
+  * mkString
+  * elements  返回一个迭代器
+* 列表间映射
+  * map
+  * flatMap   参数是一个能够返回元素列表的函数,对列表中的每个元素应用该方法,然后连接所有方法的结果并返回.(先map得出一坨List,而后flat,得到一个大的List)
+  * foreach   参数是一个过程(返回Unit的方法),对每个元素应用一次,并不改变元素.
+* 列表的过滤
+  * filter    
+  * partition
+  * find  与filter方法类似,返回的是第一个满足*论断函数*的元素.而不是全部元素.
+  * takeWhile 返回列表中最长能够满足*论断函数*的前缀.
+  * dropWhile 移除掉最长能够满足*论断函数*的前缀.
+  * span  xs span p <=> (xs takeWhile p, xs dropWhile p)
+* 列表的论断
+  * forall    对整个列表元素的论断
+  * exists    同上
+* 列表的折叠(斜杠的方向和操作树的倾斜方向是一致的,利用倾斜方向来区分左右折叠)
+  * fold left   (z :/ xs)(op) z:初始值,xs:列表,op:二元操作,应用到初始值和每个相邻元素上. *z :/ List((a, b, c))(op)相当于op(op(op(z, a), b), c)*
+  * fold right  (xs :\ z)(op) *(List(a, b, c) :\ z)(op) 等价与 op(a, (b, op(c, z)))*
+  * **右折叠的效率要高于左折叠**
+* 列表排序
+  * sort    xs sort Compator    按照Compator来对xs列表进行排序.(内部的排序算法归类为归并排序)
+* 创建列表
+  * List.apply  通过元素创建列表
+  * List.range  创建数值范围(可指定步长)
+  * List.make   创建统一的列表
+* 解除啮合列表
+  * unzip   belong to Object List not Class List, unzip only can take List[Pair] as paramter. And Class method require the ability to apply to any parameter.
+* 连接列表
+  * flatten 以列表的列表作为参数(List[List[T]])     List.flatten(), belong to Object List bacause the same reason like List.unzip
+  * concat  连接多个List,与flatten不同但很类似,flatten是一个List内部的打平,而concat是连接多个低维的List.
+
+####一个递归的Sample代码,结合了curry,partial application function.
+
+```Scala
+def msort[T](less: (T, T) => Boolean)(xs: List[T]): List[T] = {
+  def merge(xs: List[T], ys: List[T]): List[T] = {
+    (xs, ys) match {
+      case (_, Nil) => xs
+      case (Nil, _) => ys
+      case (x1 :: x2, y1 :: y2) =>
+        if (less(x1, y1)) x1 :: merge(x2, ys)
+        else y1 :: merge(xs, y2)
+    }
+  }
+
+  val n = xs.length / 2
+  n match {
+    case 0 => xs
+    case _ => merge(msort(less)(xs.take(n)), msort(less)(xs.drop(n)))
+  }
+}
+
+val intSort = msort((a: Int, b: Int) => a < b) _
+```
+
