@@ -1,0 +1,69 @@
+---
+layout: post
+title: "Chapter.17 集合类型"
+date: 2015-06-17 11:41:59 +0800
+comments: true
+categories: scala 读书笔记
+---
+
+####Iterator与Iterable
+
+* 两者有很多相同的方法,不过两者并不在一个层级内,特质Iterator扩展了AnyRef.
+* Iterable是可被枚举的类型,而特质Iterator是用来执行枚举操作的机制.
+* Iterable可以被枚举若干次,而Iterator只能被枚举一次.
+
+####更为高级的集合构建方法
+* 列表缓存
+  * List可以对列表的头部(而非尾部)进行快速的访问.
+  * ListBuffer能够支持常量时间的添加和前缀操作.元素添加用+=,元素前缀用+:.
+* 数组缓存
+  * ArrayBuffer与数组类似,只是额外还允许在列表的开始和结束的地方添加和删除元素.
+  * 由于实现中包装层导致执行得稍微有些慢,新的添加和删除操作平均为常量时间,但是偶尔会因为实现申请分配新的数组以保留缓存内容而需要**线性处理时间**.
+* 队列(Queue)
+  * 分为可变和不可变的两种Queue.
+  * Immutable Queue通过enqueue(可支持列表作为参数而批量添加)和dequeue(返回由队列头部元素和移除后队列剩余部分组成的Tuple2)分别实现在队尾入队和在队首出队.
+  * Mutable Queue使用+=*(添加一个元素)*和++=*(通过List来批量添加)*来添加元素,同时对于dequeue操作将只从队列移除头元素并返回.
+* 栈(Stack)
+  * 同样分为可变与不可变版本(不可变版本没弄明白怎么用,push多次后发现还是空的)
+  * top, pop, push
+* 字符串(经RichString隐式转换)
+  * RichString的类型是Seq[Char],而Predef又包含了从String到RichString的隐式转换,所以任意字符串都可以看作是Seq[Char].
+
+> 默认情况下直接使用Map和Set等集合类都是使用的Immutable版本,倾向于这种选择是由于Predef对象的支持.它被每个Scala源文件隐含引用.可变集里面一般都包含+=和++=操作符,在不可变集中是不支持这个操作的.
+
+```Scala
+object Predef {
+  type Set[T] = scala.collection.immutable.Set[T]
+  type Map[K, V] = scala.collection.immutable.Map[K, V]
+  val Set = scala.collection.immutable.Set
+  val Map = scala.collection.immutable.Map
+  ...
+}
+
+```
+
+####集合的排序
+* List可以直接调用sorted方法进行排序.也可以使用sortWith方法来提供自定义的排序标准.
+* 把任意一个自定义类混入特质Ordered就可以支持sorted操作.
+
+```Scala
+class Person (var name: String) extends Ordered [Person] {
+
+  override def toString = name
+  // return 0 if the same; negative if this < that; positive if this > that
+  def compare (that: Person) = {
+    if (this.name == that.name)
+      0
+    else if (this.name > that.name)
+      1
+    else
+      −1
+  }
+
+}
+```
+> 不可变类型的befit: 存储结构上更为紧凑.一个空Mutable HashMap的大小为80字节左右,每添加一个元素就附加16字节.
+
+####Immutable和Mutable之间的转换
+带有等号的操作符在Immutable对象上是不可使用的,但是如果配合var的属性定义就可以被scala编译器所支持,属于一个两者之间转换的语法糖.
+
