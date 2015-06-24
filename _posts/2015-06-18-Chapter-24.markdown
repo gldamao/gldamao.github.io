@@ -50,11 +50,35 @@ object Email {
 ```selectorString match { case Email(user, domain) => ...}``` 将引发unapply调用
 ```Email.unapply(selectorString)```. 首先要判断参数是否符合unapply方法的参数类型,不符合则直接失败.
 
+####变参抽取器
+如果想要抽取不定数量的元素值,例如希望匹配代表域名的字符串,使得域的每一段都被拆分在不同的子模式中.
+如下代码逆序匹配域名,参数列表尾部的序列同陪模式 _*, 匹配序列中所有剩下的元素.
+
+``` scala
+object Domain {
+  def apply(parts: String*) {
+    parts.reverse.mkString(".")
+  }
+
+  def unapply(whole: String): Option[Seq[String]] = {
+    Some(whole.split("\\.").reverse)
+  }
+}
+
+dom match {
+  case Domain("org", "acm") => println("acm.org")
+  case Domain("com", "sun", "java") => println("java.sun.com")
+  case Domain("net", _*) => println("a .net domain")
+}
+```
+
 - - - 
 
 ### 样本类和抽取器之间的区别
 
 * **抽取器可以把客户端代码独立开,**如果不见已经定义并导出了一套样本类,那么客户端就可能已经包含了对这些样本类的模式匹配.重命名某些样本类或修改类层级都将影响到客户端代码.
+* 样本类的执行效率比抽取器更高,同时拥有静态的检查.
+* 如果样本类继承自sealed基类,Scala编译器将采用穷据发检查模式匹配并在模式没有覆盖某种可能的组合值情况喜爱报错.
 
 
 
