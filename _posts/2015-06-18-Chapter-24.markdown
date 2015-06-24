@@ -12,7 +12,7 @@ categories: scala 读书笔记
 
 例如要写一个Email地址的解析工具,代码如下:
 
-```Scala
+``` Scala
 def isEmail(s: String): Boolean
 def domain(s: String): String
 def user(s: String): String
@@ -25,3 +25,36 @@ s match {
   case _ => println("not an email address")
 
 ```
+
+字符串显然是无法满足上述模式匹配的要求，**抽取器可以为已存在的类型定义新模式，而这种模式不需要遵守类型的内部表达方式.**
+抽取器是定义了unapply(匹配并分解值)成员方法的对象(object),也允许实现用于构建值的对偶方法apply.
+
+``` scala
+object Email {
+    //注入方法,可选
+    def apply(user: String, domain: String) = user + "@" + domain
+    //抽取方法,必须
+    def unapply(str: String): Optional[(String, String)] = {
+        val parts = str split "@"
+        if (parts.length == 2) Some((parts(0), parts(1))) else None
+    }
+}
+
+```
+
+> 这里还可以让Email继承Scala的函数类型,声明中的类型和Function2[String, String, String]是同意的,例如:
+
+```object Email extends (String, String) => String ={ ... }```
+
+抽取器由于含有了unapply而拥有了抽取的能力,于此同时也必须要考虑到传入的字符串可能并非email的情况,所以返回值**要求必须是Option和boolean(特殊情况,表示匹配成功或失败)**.
+```selectorString match { case Email(user, domain) => ...}``` 将引发unapply调用
+```Email.unapply(selectorString)```. 首先要判断参数是否符合unapply方法的参数类型,不符合则直接失败.
+
+- - - 
+
+### 样本类和抽取器之间的区别
+
+* **抽取器可以把客户端代码独立开,**如果不见已经定义并导出了一套样本类,那么客户端就可能已经包含了对这些样本类的模式匹配.重命名某些样本类或修改类层级都将影响到客户端代码.
+
+
+
