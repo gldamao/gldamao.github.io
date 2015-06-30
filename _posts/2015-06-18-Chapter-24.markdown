@@ -23,7 +23,7 @@ else println("not an email address")
 s match {
   case Email(user, domain) => println(user + " AT " + domain)
   case _ => println("not an email address")
-
+}
 ```
 
 字符串显然是无法满足上述模式匹配的要求，**抽取器可以为已存在的类型定义新模式，而这种模式不需要遵守类型的内部表达方式.**
