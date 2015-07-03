@@ -1,0 +1,103 @@
+---
+layout: post
+title: "Chapter.30 Actor和并发"
+date: 2015-07-02 17:26:02 +0800
+comments: true
+categories: scala 读书笔记
+---
+
+### scala和java对于并发设计的不同之处
+
+> java平台内置了基于共享内存和锁的线程模型,每个对象都关联了一个逻辑监控器,可以根据监控器来控制对数据的多线程访问.
+
+对于将要被多线程共享的数据标记为*synchronized*来保证java runtime将应用一种锁机制来确保同一时间只有一个线程进入由同一个锁控制的同步代码段,以此来在多进程之间协同数据访问.
+
+然而这种模型导致的问题就是控制复杂,编写代码时必须知道当下要申请哪些锁资源,以及正在修改或访问的数据可能会被其他线程修改或访问.频繁的锁操作以及竞争资源导致性能的大幅度下降.还有可能导致死锁.
+
+Scala的actor提供了一种不共享任何数据,依赖消息传递的模型来实现并发.避免死锁.从根本上绕开了**共享数据+锁**所引入的问题.
+
+#### actor和消息传递
+actor当中的几个概念:
+
+* 信箱: actor中接收并暂存发送给它的消息的空间.每个actor的信箱是独立的.
+* 独立执行: actor是是一个类似线程的实体,每个actor使用一个独立的线程.
+* actor的生命周期: 
+  1. act方法返回.
+  2. act方法由于异常被终止.
+  3. actor调用exit方法.
+
+
+当actor发送消息是并不会组合,同样接收消息时也不会被打断,消息在邮箱中等待被处理.直到actor调用receive方法(每次处理一条消息).receive调用预先定义好的偏函数.
+
+actor处理传给receive方法的片函数中的某个样本匹配的消息.邮箱中的每一个消息都要先调用传入片函数的isDefinedAt方法来决定是否与某个样本匹配.
+
+- - - 
+
+####通过重用线程获得更好的性能
+
+actor是构建在普通的java线程之上的.每个actor都会有一个独立的线程.为了节约线程,scala提供了react(也带一个偏函数),react在找到并处理消息后并不返回.返回类型是Nothing.
+
+> 由于react方法不需要返回,其实现不需要保留当前线程的调用栈.actor库可以在下一个被唤醒的线程中重用当前的线程.如果所有的actor都是react,理论上只需要一个线程就能够满足程序的全部actor的需要(如果计算机有多个core,actor子系统将在可能的情况下使用足够多的线程来充分利用所有core).
+
+使用react避免频繁的线程切换开销.接收消息的消息处理器需要同时处理消息并执行actor所有余下的工作.
+
+``` scala
+object LearnActor {
+
+  def main(args: Array[String]): Unit = {
+
+  }
+}
+
+object NameResolver extends Actor {
+  override def act(): Unit = {
+    react {
+      case Some(host: String, actor: Actor) =>
+        actor ! getIp(host)
+        act()
+      case "EXIT" =>
+        println("Name resolver exiting.")
+      case msg =>
+        println("Unhandled message: " + msg)
+        act()
+    }
+  }
+
+  def getIp(name: String): Option[String] = {
+    import java.net.{InetAddress, UnknownHostException}
+    try {
+      Some(InetAddress.getByName(name).toString)
+    } catch {
+      case _: UnknownHostException => None
+    }
+
+  }
+}
+
+// 使用loop的另一个版本
+
+def act() {
+  loop {
+    react {
+      case (name: String, actor: Actor) =>
+        actor ! getIp(name)
+      case msg =>
+        println("Unhandled message: " + msg)
+    }
+  }
+}
+```
+
+1. 不使用死循环.再执行完相应的消息处理操作后再次调用act()以此来实现持续的接收消息.
+2. 如果不在case分支的最后调用act()方法,则可以把这个case分支认为是退出分支.
+3. 也可以用**scala.actors.Actor.loop**函数重复执行一个代码段.这个actor将会循环相应消息,forever~~~~
+
+- - - 
+
+###看看城里人怎么写actor
+
+* Actor不应该阻塞,否则在actor阻塞时,另一个actor可能会对它发起一个它能够处理的请求.如果actor在首个请求时阻塞了,那么它将不会留意到第二个请求.最坏的情况是多个actor都在等待另一个阻塞的actor的响应.
+* react的工作原理,返回Nothing表示永远不会正常返回的函数,总是以异常的方式完成.
+  * 当调用一个actor的start时,start方法会保证最终有某个线程来调用那个actor的act方法.
+  * 如果act当中调用了react,则react方法会在actor的邮箱中查找传递给偏函数的能够处理的消息.
+
