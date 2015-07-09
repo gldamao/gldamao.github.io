@@ -50,6 +50,8 @@ actor是构建在普通的java线程之上的.**每个actor都会有一个独立
 
 使用react避免频繁的线程切换开销.接收消息的消息处理器需要同时处理消息并执行actor所有余下的工作.
 
+Actor线程模型可以这样理解：所有Actor共享一个线程池，总的线程个数可以配置，也可以根据CPU个数决定；当一个Actor启动之后，Scala分配一个线程给它使用，如果使用receive模型，这个线程就一直为该Actor所有，如果使用react模型，Scala执行完react方法后抛出异常，则该线程就可以被其它Actor使用。
+
 ``` scala
 object LearnActor {
 

@@ -12,6 +12,7 @@ categories: 读书笔记 Paper
 
 * [Your Server as a Function](http://monkey.org/~marius/funsrv.pdf): 一篇介绍finagle的文章
 * 快学scala
+* Scala IN DEPTH
 * Programming in scala(Ver.2)
 
 
