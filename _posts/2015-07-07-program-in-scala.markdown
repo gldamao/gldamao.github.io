@@ -34,6 +34,8 @@ categories: scala 读书笔记
 
 [Scala中处理null的终极解决方案--Option](#option)
 
+[Scala类型系统](#classtype)
+
 ## <span id="ch7">Chapter.7 内建控制结构</span>
 
 ###等效推论(equational reasoning)
@@ -1155,3 +1157,41 @@ def getTemporaryDirectory(tmpArg: Option[String]): java.io.File = {
 ```
 
 * 如果变量已初始化则执行代码块.利用foreach的特性,遍历Option里的所有值,因为Option值只有零或一个.所以代码块要么执行,要么不执行.
+
+
+- - - 
+
+## <span id="classtype"> Scala类型系统</span>
+###java的类型系统发展与scala类型比较
+
+1. java在没有引入泛型之前(jdk1.5以前),每一种类型都对应了独立的class(一一映射).通过获取对象的class对象就可以准确的做出类型判断.
+2. 引入泛型后,jvm在运行时进行了类型擦除,导致List<String>和List<Long>的class都是Class<List>.同时,java里增加了Type接口来表达更泛的类型.
+3. scala自己定义了一个scala.reflect.runtime.universe.Type(2.10后).
+
+在scala中获取类型信息是很方便的.同样要获取class信息也很方便.
+``` Scala
+import scala.reflect.runtime.universe._
+class A
+typeOf[A]
+// res1:reflect.runtime.universe.Type = A
+
+classOf[A]
+//res2:Class[A] = class A
+
+scala> val a  = new A
+a: A = A@1d9e436a
+
+scala> a.getClass
+res23: Class[_ <: A] = class A
+
+scala> trait T
+defined trait T
+
+scala> classOf[T]
+res24: Class[T] = interface T
+
+scala> typeOf[T]
+res25: reflect.runtime.universe.Type = T
+
+```
+
