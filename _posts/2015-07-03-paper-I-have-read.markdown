@@ -43,3 +43,7 @@ categories: 读书笔记 Paper
 ### Linux
 
 * Linux系统编程 
+
+## Log
+
+* [The Log: What every software engineer should know about real-time data's unifying abstraction](http://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying)
