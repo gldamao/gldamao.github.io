@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>/notes/download-this-theme</loc>
+    <lastmod>2015-09-09T00:00:00+08:00</lastmod>
+  </url>
+  <url>
+    <loc>/notes/lorem-ipsum</loc>
+    <lastmod>2015-09-06T00:00:00+08:00</lastmod>
+  </url>
+  <url>
+    <loc>/notes/markdown-cheatsheet-demo</loc>
+    <lastmod>2015-09-04T00:00:00+08:00</lastmod>
+  </url>
+  <url>
+    <loc>/notes/program-in-scala</loc>
+    <lastmod>2015-07-09T14:32:59+08:00</lastmod>
+  </url>
+  <url>
+    <loc>/notes/some-intrest-things-about-Option</loc>
+    <lastmod>2015-07-09T07:22:02+08:00</lastmod>
+  </url>
+  <url>
+    <loc>/notes/paper-I-have-read</loc>
+    <lastmod>2015-07-03T17:04:11+08:00</lastmod>
+  </url>
+  <url>
+    <loc>/notes/kafka-logflume</loc>
+    <lastmod>2015-06-02T16:00:00+08:00</lastmod>
+  </url>
+  <url>
+    <loc>/404</loc>
+  </url>
+  <url>
+    <loc>/about</loc>
+  </url>
+  <url>
+    <loc>/</loc>
+  </url>
+</urlset>
