@@ -5,6 +5,7 @@ date: 2015-06-02 16:00:00 + 0800
 comments: true
 categories: scala 读书笔记
 ---
+
 # Kafka & logflume
 
 标签： kafka logflume MQ hadoop

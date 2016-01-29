@@ -49,6 +49,7 @@ categories: scala 读书笔记
 * for可以和generator结合使用，可以兼容任何种类的集合，不仅仅是数组。或者说->符号右侧的表达式必须支持foreach方法。
 * for语句中可以添加过滤条件，例如：
 
+
 ```scala
 val files = java.io.File(".").listFiles
 for (file <- files if file.getName.endsWith(".scala"))
@@ -110,6 +111,7 @@ val lineLength = for {
 * throw表达式的结果类型是Nothing。
 * if的一个分支计算值，另外一个分支抛出异常，那么整个if表达式的返回值就是实际计算分支的类型。
 * try catch结构中使用模式匹配。在下面的例子中如果异常并不属于其中给定的两个类型，则异常会沿着调用堆栈继续向上传递。
+
 ```scala
 try {
   val f = new FileReader("filename")
@@ -118,6 +120,7 @@ try {
   case ex: java.io.IOException => //Handle error I/O 
 }
 ```
+
 * finaly中尽量避免返回任何值，这种情况的处理方式和java有较大的差异。保证逻辑的简单。一般就是做一些资源清理的工作。
 
 
